@@ -1,0 +1,16 @@
+[package]
+name = "hammersmith"
+version = "0.1.0"
+edition = "2021"
+authors = ["Whanos <github@sergal.fun>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serenity = {git = "https://github.com/serenity-rs/serenity", default-features = false, features = ["client", "gateway", "rustls_backend", "model"]}
+toml = "0.5.9"
+serde = "1.0"
+serde_derive = "1.0.136"
+tokio = { version = "1.18.2", features = ["macros", "rt-multi-thread"] }
+poise = "0.2.1"
+lazy_static = "1.4.0"
