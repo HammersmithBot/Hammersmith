@@ -40,8 +40,8 @@ pub async fn punish(
 }
 
 #[poise::command(
-slash_command,
-required_permissions = "BAN_MEMBERS | KICK_MEMBERS"
+    slash_command,
+    required_permissions = "BAN_MEMBERS | KICK_MEMBERS"
 )]
 pub async fn punishid(
     ctx: Context<'_>,
