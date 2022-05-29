@@ -30,7 +30,7 @@ async fn age(
 }
 
 /// Register slash commands. @mention register
-#[poise::command(prefix_command)]
+#[poise::command(prefix_command, owners_only, hide_in_help)]
 async fn register(ctx: Context<'_>) -> Result<(), Error> {
     poise::builtins::register_application_commands_buttons(ctx).await?;
     Ok(())
@@ -81,7 +81,7 @@ async fn event_listeners(
 async fn main() {
     let framework = poise::Framework::build()
         .options(poise::FrameworkOptions {
-            commands: vec![age(), register(), moderation::punish(), owners::shutdown()],
+            commands: vec![age(), register(), moderation::punish(), moderation::punishid(), owners::shutdown()],
             on_error: |error| Box::pin(on_error(error)),
             listener: |ctx, event, framework, userdata| {
                 Box::pin(event_listeners(ctx, event, framework, userdata))
@@ -92,5 +92,5 @@ async fn main() {
         .intents(serenity::GatewayIntents::all())
         .user_data_setup(move |_ctx, _ready, _framework| Box::pin(async move { Ok(Data {}) }));
 
-    framework.run().await.unwrap();
+    framework.run_autosharded().await.unwrap();
 }
