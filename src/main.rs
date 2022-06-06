@@ -81,7 +81,7 @@ async fn event_listeners(
 async fn main() {
     let framework = poise::Framework::build()
         .options(poise::FrameworkOptions {
-            commands: vec![age(), register(), moderation::punish(), moderation::punishid(), owners::shutdown()],
+            commands: vec![age(), register(), moderation::punish(), moderation::punishid(), owners::shutdown(), utilities::convert()],
             on_error: |error| Box::pin(on_error(error)),
             listener: |ctx, event, framework, userdata| {
                 Box::pin(event_listeners(ctx, event, framework, userdata))
